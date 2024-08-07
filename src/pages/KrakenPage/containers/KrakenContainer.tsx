@@ -23,6 +23,7 @@ const KrakenContainer = () => {
     <marquee
       // eslint-disable-next-line react/no-unknown-property
       scrollamount="2" behavior="scroll" direction="up"
+      style={{ textAlign: "center" }}
     >
       <div style={{ whiteSpace: "pre", display: "flex", flexDirection: "column", rowGap: 5, fontSize: "small" }}>
         <span>CPU: {JSON.stringify(info.cpu, null, 1)}</span>
