@@ -11,7 +11,7 @@ const KrakenPage = () => {
       <div>
         <img src={reactLogo} className="logo react" alt="React logo" />
       </div>
-      <h1>Nzxtagon</h1>
+      <h1>NZTAGON</h1>
       <p className="read-the-docs">
         <KrakenContainer />
       </p>

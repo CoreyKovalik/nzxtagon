@@ -3,12 +3,12 @@ import KrakenPage from "pages/KrakenPage";
 
 const AppRouter = () => {
   const searchParams = new URLSearchParams(window.location.search);
-  const kraken = searchParams.get("kraken") === "1";
-  const configurationPage = !kraken;
+  const enableKrakenPage = searchParams.get("kraken") === "1";
+  const enableConfigurationPage = !enableKrakenPage;
   return (
     <>
-      {kraken && <KrakenPage />}
-      {configurationPage && <ConfigurationPage />}
+      {enableConfigurationPage && <ConfigurationPage />}
+      {enableKrakenPage && <KrakenPage />}
     </>
   )
 }

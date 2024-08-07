@@ -1,6 +1,9 @@
 const ConfigurationPage = () => {
   return (
-    <div>ConfigurationPage</div>
+    <>
+    <h1>NZTAGON</h1>
+    <p className="read-the-docs">ConfigurationPage</p>
+    </>
   );
 }
 
