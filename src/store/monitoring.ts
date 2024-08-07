@@ -4,23 +4,23 @@ import { KrakenMetadata } from 'types/KrakenMetadata';
 import { RAM } from 'types/RAM';
 import { create } from 'zustand'
 
-type NzxtMonitoringData = {
+export type NzxtMonitoringData = {
   cpu?: CPU;
   gpu?: GPU;
   ram?: RAM;
   kraken?: KrakenMetadata;
 }
 
-type NzxtMonitoringStoreState = NzxtMonitoringData & {
+type State = NzxtMonitoringData & {
   updateCount: number;
   lastUpdateAt?: number;
 }
 
-type NzxtMonitoringStoreActions = {
+type Actions = {
   setMonitoringData: (state: NzxtMonitoringData) => void;
 }
 
-type NzxtMonitoringStore = NzxtMonitoringStoreState & NzxtMonitoringStoreActions
+type NzxtMonitoringStore = State & Actions
 
 export const useNzxtMonitoringStore = create<NzxtMonitoringStore>((set) => ({
   updateCount: 0,
