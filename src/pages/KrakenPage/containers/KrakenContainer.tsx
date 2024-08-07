@@ -26,6 +26,7 @@ const KrakenContainer = () => {
       style={{ textAlign: "center" }}
     >
       <div style={{ whiteSpace: "pre", display: "flex", flexDirection: "column", rowGap: 5, fontSize: "small" }}>
+        <span>KRAKEN: {JSON.stringify(window.nzxt?.v1, null, 1)}</span>
         <span>CPU: {JSON.stringify(info.cpu, null, 1)}</span>
         <span>GPU: {JSON.stringify(info.gpu, null, 1)}</span>
         <span>RAM: {JSON.stringify(info.ram, null, 1)}</span>
