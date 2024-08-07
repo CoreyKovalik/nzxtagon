@@ -13,12 +13,14 @@
     "node": "=20.15.0"
   },
   "dependencies": {
+    "chance": "1.1.12",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "zustand": "4.5.4"
   },
   "devDependencies": {
     "@nzxt/web-integrations-types": "0.4.0",
+    "@types/chance": "1.1.6",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "7.15.0",
