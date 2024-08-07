@@ -6,11 +6,11 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 // @ts-expect-error: process.env exists in the context of vite config.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const nodeProcess = (process as any);
-const isProd = nodeProcess.env === "production";
+const isProd = nodeProcess.env.NODE_ENV === "production";
 const repositoryName = "nzxtagon";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-  base: isProd ? `/${repositoryName}/` : undefined, // necessary for gh-pages
+  base: isProd ? `/${repositoryName}/` : undefined // necessary for gh-pages
 })
