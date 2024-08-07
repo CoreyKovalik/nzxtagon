@@ -17,14 +17,21 @@ const KrakenContainer = () => {
     kraken,
   }
   return (
-    <div style={{ whiteSpace: "pre", display: "flex", flexDirection: "column", rowGap: 10 }}>
-      <span>{`Update Count: ${info.updateCount}`} {JSON.stringify(info.kraken, null)}</span>
-      <div style={{ whiteSpace: "pre", display: "flex", fontSize: "small" }}>
+    <>
+    <span>{`Update Count: ${info.updateCount}`} {JSON.stringify(info.kraken, null)}</span>
+    {/* @ts-expect-error: Oh yeah, we're using marquee */}
+    <marquee
+      // eslint-disable-next-line react/no-unknown-property
+      scrollamount="2" behavior="scroll" direction="up"
+    >
+      <div style={{ whiteSpace: "pre", display: "flex", flexDirection: "column", rowGap: 5, fontSize: "small" }}>
         <span>CPU: {JSON.stringify(info.cpu, null, 1)}</span>
         <span>GPU: {JSON.stringify(info.gpu, null, 1)}</span>
         <span>RAM: {JSON.stringify(info.ram, null, 1)}</span>
       </div>
-      </div>
+    {/* @ts-expect-error: Oh yeah, we're using marquee */}
+    </marquee>
+    </>
   );
 }
 

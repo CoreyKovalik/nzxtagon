@@ -1,4 +1,3 @@
-import reactLogo from 'assets/react.svg'
 import NzxtPlugin from "plugins/NzxtPlugin";
 import KrakenContainer from './containers/KrakenContainer';
 import MockNzxtPlugin from 'plugins/MockNzxtPlugin';
@@ -8,13 +7,8 @@ const KrakenPage = () => {
     <>
     <NzxtPlugin />
     {import.meta.env.DEV && <MockNzxtPlugin />}
-      <div>
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <h1>NZTAGON</h1>
-      <p className="read-the-docs">
-        <KrakenContainer />
-      </p>
+      <div style={{ fontSize: "2em", lineHeight: 1.1, fontWeight: "bold" }}>NZTAGON</div>
+      <KrakenContainer />
     </>
   );
 }
