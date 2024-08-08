@@ -3,8 +3,7 @@ import { time } from "constants";
 import { FC, useEffect } from "react"
 import { NzxtMonitoringData, useNzxtMonitoringStore } from "store/monitoring";
 
-const seed = "MockNzxtPlugin";
-const chance = new Chance(seed);
+const chance = new Chance();
 
 type MockNzxtMonitoringData = Required<NzxtMonitoringData>;
 
@@ -14,7 +13,7 @@ const mockCpu = () => ({
 });
 
 const mockGpu = () => ({
-  name: chance.word({ length: 6 }).toUpperCase() + " GPU",
+  name: chance.pickone(["NVIDIA", "AMD", "Intel", "Integrated Graphics"]) + " GPU",
 });
 
 const mockRam = () => ({
@@ -43,7 +42,6 @@ const mockMonitoringData = ({ gpu, cpu, ram }: {
 }): Required<NzxtMonitoringData> => ({
   cpu: {
     ...cpu,
-    manufacturer: chance.pickone(["Intel", "AMD"]),
     codeName: chance.word({ length: 10 }).toUpperCase(),
     socket: chance.word({ length: 8 }).toUpperCase(),
     load: chance.integer({ min: 0, max: 100 }), // CPU load as a percentage
@@ -95,6 +93,10 @@ const MockNzxtPlugin: FC = () => {
   const ram = mockRam();
 
   useEffect(() => {
+    if (import.meta.env.PROD) {
+      return;
+    }
+
     const intervalId = setInterval(() => {
       const mocked = mockMonitoringData({ cpu, gpu, ram });
       setMonitoringData(mocked);
