@@ -3,8 +3,8 @@ import KrakenContainer from './containers/KrakenContainer';
 import MockNzxtPlugin from 'plugins/MockNzxtPlugin';
 
 const KrakenPage = () => {
-  const krakenWidth = window.nzxt?.v1?.width;
-  const krakenHeight = window.nzxt?.v1?.height;
+  const krakenWidth = window.nzxt?.v1?.width || "100vw";
+  const krakenHeight = window.nzxt?.v1?.height || "100vh";
   return (
     <>
     <NzxtPlugin />
