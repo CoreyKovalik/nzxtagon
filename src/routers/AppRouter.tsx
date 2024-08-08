@@ -1,3 +1,4 @@
+import DevKrakenButtonContainer from "dev-only/DevKrakenButtonContainer";
 import ConfigurationPage from "pages/ConfigurationPage";
 import KrakenPage from "pages/KrakenPage";
 
@@ -7,6 +8,7 @@ const AppRouter = () => {
   const enableConfigurationPage = !enableKrakenPage;
   return (
     <>
+      {import.meta.env.DEV && <DevKrakenButtonContainer />}
       {enableConfigurationPage && <ConfigurationPage />}
       {enableKrakenPage && <KrakenPage />}
     </>
