@@ -5,9 +5,10 @@ type ConfigurationTestViewProps = {
   value: ConfigurationTestColors | undefined;
   options: ConfigurationTestColors[];
   onClickOption: (value: ConfigurationTestColors) => void;
+  onClickClear: () => void;
 }
 
-const ConfigurationTestView: FC<ConfigurationTestViewProps> = ({ value, options, onClickOption }) => (
+const ConfigurationTestView: FC<ConfigurationTestViewProps> = ({ value, options, onClickOption, onClickClear }) => (
   <div style={{ display: "flex", flexDirection: "column", rowGap: 25 }}>
     <span style={{ fontWeight: "bold" }}>[Config Test] Select a color below: </span>
 
@@ -30,6 +31,17 @@ const ConfigurationTestView: FC<ConfigurationTestViewProps> = ({ value, options,
         );
       }
       )}
+
+      <button
+        onClick={() => onClickClear()}
+        style={{
+          fontWeight: "bold",
+          color: "white",
+          borderColor: "white",
+        }}
+      >
+        {"clear"}
+      </button>
     </div>
   </div>
 )

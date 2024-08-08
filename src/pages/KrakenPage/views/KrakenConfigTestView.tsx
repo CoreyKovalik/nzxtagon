@@ -8,11 +8,11 @@ type KrakenConfigTestView = {
 const KrakenConfigTestView: FC<KrakenConfigTestView> = ({ value }) => {
   return (
     <div>
-      <span>ConfigurationTest: </span>
+      <span>Selected Color: </span>
       {value ? (
         <span style={{ color: `${value}`, fontWeight: "bold" }}>{value}</span>
       ) : (
-        <span>No Color Selected</span>
+        <span>-</span>
       )}
     </div>
   );

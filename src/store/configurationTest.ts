@@ -7,7 +7,7 @@ type State = {
 }
 
 type Actions = {
-  selectColor: (color: ConfigurationTestColors) => void;
+  selectColor: (color: ConfigurationTestColors | undefined) => void;
 }
 
 type ConfigurationTestStore = State & Actions;
