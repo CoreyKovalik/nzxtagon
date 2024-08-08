@@ -3,6 +3,7 @@ import KrakenContainer from './containers/KrakenContainer';
 import MockNzxtPlugin from 'plugins/MockNzxtPlugin';
 import KrakenConfigTestContainer from "./containers/KrakenConfigTestContainer";
 import { useConfigurationTestStore } from "store/configurationTest";
+import KrakenStorageCommunicationPlugin from "plugins/KrakenStorageCommunicationPlugin";
 import useQueryParam from "hooks/useQueryParam";
 
 const KRAKEN_280_ELITE_DEFAULT_WIDTH_PX = 320;
@@ -16,6 +17,7 @@ const KrakenPage = () => {
   return (
     <>
     <NzxtPlugin />
+    <KrakenStorageCommunicationPlugin />
     {import.meta.env.DEV && <MockNzxtPlugin />}
     <div style={{
       display: "flex",
