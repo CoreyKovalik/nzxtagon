@@ -1,6 +1,7 @@
 import NzxtPlugin from "plugins/NzxtPlugin";
 import KrakenContainer from './containers/KrakenContainer';
 import MockNzxtPlugin from 'plugins/MockNzxtPlugin';
+import KrakenConfigTestContainer from "./containers/KrakenConfigTestContainer";
 
 const KrakenPage = () => {
   const krakenWidth = window.nzxt?.v1?.width || "100vw";
@@ -19,6 +20,7 @@ const KrakenPage = () => {
       // maxHeight: "100vh",
     }}>
       <span style={{ fontSize: "2em", lineHeight: 1.1, fontWeight: "bold" }}>NZTAGON</span>
+      <KrakenConfigTestContainer />
       <KrakenContainer />
     </div>
     </>
