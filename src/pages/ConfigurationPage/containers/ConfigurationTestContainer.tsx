@@ -17,7 +17,7 @@ const ConfigurationTestContainer = () => {
     return null;
   }
   return (
-    <ConfigurationTestView value={color} options={options} onClickOption={handleClickOption} onClickClear={() => selectColor(undefined)} />
+    <ConfigurationTestView value={color} options={options} onClickOption={handleClickOption} onClickClear={() => selectColor(null)} />
   )
 }
 

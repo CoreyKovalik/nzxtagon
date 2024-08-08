@@ -2,7 +2,7 @@ import { FC } from "react";
 import { ConfigurationTestColors } from "types/ConfigurationTestColors";
 
 type KrakenConfigTestView = {
-  value: ConfigurationTestColors | undefined;
+  value: ConfigurationTestColors | null;
 }
 
 const KrakenConfigTestView: FC<KrakenConfigTestView> = ({ value }) => {

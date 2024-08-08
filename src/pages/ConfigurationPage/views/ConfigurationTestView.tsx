@@ -2,7 +2,7 @@ import { FC } from "react";
 import { ConfigurationTestColors } from "types/ConfigurationTestColors";
 
 type ConfigurationTestViewProps = {
-  value: ConfigurationTestColors | undefined;
+  value: ConfigurationTestColors | null;
   options: ConfigurationTestColors[];
   onClickOption: (value: ConfigurationTestColors) => void;
   onClickClear: () => void;

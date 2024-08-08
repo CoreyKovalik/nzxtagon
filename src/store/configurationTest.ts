@@ -3,11 +3,11 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 type State = {
-  color?: ConfigurationTestColors;
+  color: ConfigurationTestColors | null;
 }
 
 type Actions = {
-  selectColor: (color: ConfigurationTestColors | undefined) => void;
+  selectColor: (color: ConfigurationTestColors | null) => void;
 }
 
 type ConfigurationTestStore = State & Actions;
@@ -15,6 +15,7 @@ type ConfigurationTestStore = State & Actions;
 export const useConfigurationTestStore = create<ConfigurationTestStore>()(
   persist(
     (set, _get) => ({
+      color: null,
       selectColor: (color) => set((state) => ({...state, color })),
     }),
     {
