@@ -1,46 +1,73 @@
+import { CSSProperties, FC, ReactNode } from "react";
+
 import NzxtPlugin from "plugins/NzxtPlugin";
-import KrakenContainer from './containers/KrakenContainer';
+import KrakenDataContainer from "./containers/KrakenDataContainer";
 import MockNzxtPlugin from 'plugins/MockNzxtPlugin';
-import KrakenConfigTestContainer from "./containers/KrakenConfigTestContainer";
 import { useConfigurationTestStore } from "store/configurationTest";
 import KrakenStorageCommunicationPlugin from "plugins/KrakenStorageCommunicationPlugin";
 import useQueryParam from "hooks/useQueryParam";
 
-const KRAKEN_280_ELITE_DEFAULT_WIDTH_PX = 320;
-const KRAKEN_280_ELITE_DEFAULT_HEIGHT_PX = 320;
+import krakenStyles from './kraken.module.css'
+import useKrakenDimensions from "hooks/useKrakenDimensions";
+import KrakenConfigTestContainer from "./containers/KrakenConfigTestContainer";
+import useDemo from "hooks/useDemo";
+import useDebug from "hooks/useDebug";
+import { Shape } from "@nzxt/web-integrations-types/v1";
+import NzxtagonView from "./views/NzxtagonView";
 
 const KrakenPage = () => {
   const enableConfigurationTest = useQueryParam("enableConfigurationTest");
+  const isDemo = useDemo();
+  const isDebug = useDebug();
   const color = useConfigurationTestStore((state) => state.color);
-  const krakenWidth = window.nzxt?.v1?.width || KRAKEN_280_ELITE_DEFAULT_WIDTH_PX;
-  const krakenHeight = window.nzxt?.v1?.height || KRAKEN_280_ELITE_DEFAULT_HEIGHT_PX;
+  const { krakenWidth, krakenHeight, shape } = useKrakenDimensions();
+  const enableNzxt = import.meta.env.PROD && !isDemo;
   return (
     <>
-    <NzxtPlugin />
+    {enableNzxt ? <NzxtPlugin /> : <MockNzxtPlugin />}
     <KrakenStorageCommunicationPlugin />
-    {import.meta.env.DEV && <MockNzxtPlugin />}
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      width: krakenWidth,
-      height: krakenHeight,
-      maxHeight: "100vh",
-      boxSizing: "border-box",
-      borderRadius: "50%",
-      borderColor: !!enableConfigurationTest && color || "white",
-      borderWidth: 5,
-      borderStyle: "solid",
-      padding: "20px 10px",
-    }}>
-      <span style={{ fontSize: "2em", lineHeight: 1.1, fontWeight: "bold" }}>NZTAGON</span>
-      <KrakenConfigTestContainer />
-      <KrakenContainer />
-    </div>
+    <KrakenDisplay
+      width={krakenWidth}
+      height={krakenHeight}
+      borderColor={!!enableConfigurationTest && color || "white"}
+      shape={shape}
+    >
+      <NzxtagonView />
+      {isDebug && <KrakenConfigTestContainer />}
+      <KrakenDataContainer />
+    </KrakenDisplay>
     </>
   );
 }
 
 export default KrakenPage
+
+const KrakenDisplay: FC<{
+  children: ReactNode;
+  width: number;
+  height: number;
+  shape: Shape;
+  borderColor?: CSSProperties['borderColor'];
+}> = ({ children, width, height, shape, borderColor }) => {
+  if (shape === "circle") {
+    return (
+      <div className={krakenStyles.wrapper} style={{ width, height, borderColor }}>
+        <div className={krakenStyles.container}>
+          <span className={krakenStyles.content}>
+            {children}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  if (shape === "square") {
+    return (
+      <div className={krakenStyles.square} style={{ width, height, borderColor }}>
+        {children}
+      </div>
+    );
+  }
+
+  return null;
+}
