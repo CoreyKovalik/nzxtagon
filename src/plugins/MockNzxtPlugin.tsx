@@ -1,5 +1,6 @@
 import Chance from "chance";
 import { time } from "constants";
+import useDemo from "hooks/useDemo";
 import { FC, useEffect } from "react"
 import { NzxtMonitoringData, useNzxtMonitoringStore } from "store/monitoring";
 
@@ -87,13 +88,14 @@ const mockMonitoringData = ({ gpu, cpu, ram }: {
 
 const MockNzxtPlugin: FC = () => {
   const setMonitoringData = useNzxtMonitoringStore((state) => state.setMonitoringData);
+  const isDemo = useDemo();
 
   const cpu = mockCpu();
   const gpu = mockGpu();
   const ram = mockRam();
 
   useEffect(() => {
-    if (import.meta.env.PROD) {
+    if (!isDemo && import.meta.env.PROD) {
       return;
     }
 

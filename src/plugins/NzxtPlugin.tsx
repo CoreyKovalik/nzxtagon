@@ -2,6 +2,7 @@ import { FC, useEffect } from "react"
 import { useNzxtMonitoringStore } from "store/monitoring";
 
 import { MonitoringData } from "@nzxt/web-integrations-types/v1";
+import useDemo from "hooks/useDemo";
 
 const getSingleCpu = (data: MonitoringData) => {
   const cpus = data.cpus;
@@ -22,8 +23,13 @@ const getSingleGpu = (data: MonitoringData) => data.gpus.find((gpu, index, gpus)
 
 const NzxtPlugin: FC = () => {
   const setMonitoringData = useNzxtMonitoringStore((state) => state.setMonitoringData);
+  const isDemo = useDemo();
 
   useEffect(() => {
+    if (isDemo) {
+      return;
+    }
+
     window.nzxt = {
       v1: {
         // NZXT CAM will call this function once a second with updated monitoring data.
