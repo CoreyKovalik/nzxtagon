@@ -12,5 +12,12 @@ const repositoryName = "nzxtagon";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-  base: isProd ? `/${repositoryName}/` : undefined // necessary for gh-pages
+  base: isProd ? `/${repositoryName}/` : undefined, // necessary for gh-pages
+  css: {
+    modules: {
+      localsConvention: "camelCase",
+      scopeBehaviour: 'local',
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+    },
+  },
 })
