@@ -16,8 +16,8 @@ const DevKrakenButtonContainer = () => {
 
   return (
     <div style={{ position: "fixed", bottom: 0, zIndex: 99 }}>
-      <button onClick={handleSetKrakenQueryParam}>
-        {`[dev-only] Set kraken=${nextQueryParam}`}
+      <button onClick={handleSetKrakenQueryParam} style={{ padding: 0 }}>
+        {`kraken=${nextQueryParam}`}
       </button>
     </div>
   );
